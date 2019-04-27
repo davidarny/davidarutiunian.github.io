@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Profile from "../components/profile";
 import Row from "antd/es/row";
@@ -8,16 +7,8 @@ import Typography from "antd/es/typography";
 
 function IndexPage() {
     return (
-        <Layout>
-            <SEO
-                title="Home"
-                keywords={[
-                    `David Arutiunian`,
-                    "backend",
-                    "frontend",
-                    `developer`,
-                ]}
-            />
+        <>
+            <SEO title="Me" keywords={["backend", "frontend", `developer`]} />
             <style jsx>{`
                 .subtitle {
                     font-size: 1em;
@@ -60,7 +51,7 @@ function IndexPage() {
                     </Row>
                 </Col>
             </Row>
-        </Layout>
+        </>
     );
 }
 

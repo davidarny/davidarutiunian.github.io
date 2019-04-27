@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Row from "antd/es/row";
 import Col from "antd/es/col";
@@ -7,7 +6,7 @@ import NotFound from "../components/not-found";
 
 function NotFoundPage() {
     return (
-        <Layout>
+        <>
             <SEO title="404: Not found" />
             <Row
                 type="flex"
@@ -19,7 +18,7 @@ function NotFoundPage() {
                     <NotFound />
                 </Col>
             </Row>
-        </Layout>
+        </>
     );
 }
 

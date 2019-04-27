@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Stub from "../components/stub";
 import Row from "antd/es/row";
@@ -7,7 +6,7 @@ import Col from "antd/es/col";
 
 function Contacts() {
     return (
-        <Layout>
+        <>
             <SEO title="Contacts" keywords={[`David Arutiunian`, "contacts"]} />
             <Row
                 type="flex"
@@ -19,7 +18,7 @@ function Contacts() {
                     <Stub />
                 </Col>
             </Row>
-        </Layout>
+        </>
     );
 }
 

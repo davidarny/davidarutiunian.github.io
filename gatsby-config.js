@@ -4,12 +4,13 @@ module.exports = {
         description: `Personal website powered by Gatsby`,
         author: `@DavidArutiunian`,
         menuLinks: [
-            { title: "Home", id: "home", url: "/" },
+            { title: "Me", id: "me", url: "/" },
             { title: "About", id: "about", url: "/about" },
             { title: "Contacts", id: "contacts", url: "/contacts" },
         ]
     },
     plugins: [
+        `gatsby-plugin-layout`,
         `gatsby-plugin-react-helmet`,
         {
             resolve: `gatsby-source-filesystem`,

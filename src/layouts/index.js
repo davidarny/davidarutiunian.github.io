@@ -2,7 +2,7 @@ import "antd/dist/antd.css";
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import Navbar from "./navbar";
+import Navbar from "../components/navbar";
 import Layout from "antd/es/layout";
 import Row from "antd/es/row";
 import Col from "antd/es/col";
@@ -33,12 +33,10 @@ function CustomLayout({ children }) {
                         a {
                             color: inherit;
                         }
-
-                        a:hover {
-                            color: white;
-                        }
                     `}</style>
-                    <Header style={{ padding: 0, marginBottom: "1em" }}>
+                    <Header
+                        style={{ padding: 0, marginBottom: "1em", zIndex: 1 }}
+                    >
                         <Navbar items={data.site.siteMetadata.menuLinks} />
                     </Header>
                     <Content>{children}</Content>

@@ -93,7 +93,7 @@ function Navbar({ items = [] }) {
                                         items={items}
                                         active={active}
                                         color={{
-                                            active: "darkgreen",
+                                            active: "#001529",
                                             main: "darkgrey",
                                         }}
                                         display="block"
@@ -198,7 +198,6 @@ function NavbarItems({ items, active, color, display }) {
             <style jsx>{`
                 .item {
                     display: ${display};
-                    margin: 0 5px 0 5px;
                     color: ${color.main};
                 }
 
@@ -206,9 +205,10 @@ function NavbarItems({ items, active, color, display }) {
                     color: ${color.active};
                 }
 
-                .link {
-                    text-decoration: none;
-                    color: inherit;
+                @media (min-width: 576px) {
+                    .item {
+                        margin: 0 10px 0 10px;
+                    }
                 }
             `}</style>
             {items.map((item, index) => (
