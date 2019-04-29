@@ -1,4 +1,6 @@
-import React from "react";
+/** @jsx jsx */
+
+import { jsx, css } from "@emotion/core";
 import { StaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 
@@ -17,22 +19,20 @@ function Stub() {
                 }
             `}
             render={data => (
-                <>
-                    <style jsx>{`
-                        .stub {
-                            display: block;
-                            width: 50%;
-                            max-width: 500px;
-                            margin: auto;
-                        }
-                    `}</style>
-                    <div className="stub">
-                        <Img
-                            fluid={data.placeholderImage.childImageSharp.fluid}
-                            alt="stub"
-                        />
-                    </div>
-                </>
+                <div
+                    css={css`
+                        display: block;
+                        width: 50%;
+                        max-width: 500px;
+                        min-width: 200px;
+                        margin: auto;
+                    `}
+                >
+                    <Img
+                        fluid={data.placeholderImage.childImageSharp.fluid}
+                        alt="stub"
+                    />
+                </div>
             )}
         />
     );

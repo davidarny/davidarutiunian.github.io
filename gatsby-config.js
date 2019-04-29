@@ -7,7 +7,7 @@ module.exports = {
             { title: "Me", id: "me", url: "/" },
             { title: "About", id: "about", url: "/about" },
             { title: "Contacts", id: "contacts", url: "/contacts" },
-        ]
+        ],
     },
     plugins: [
         `gatsby-plugin-layout`,
@@ -33,14 +33,7 @@ module.exports = {
                 icon: `src/images/favicon.png`,
             },
         },
-        {
-            resolve: `gatsby-plugin-styled-jsx`,
-            options: {
-                optimizeForSpeed: true,
-                sourceMaps: false,
-                vendorPrefixes: true,
-            },
-        },
-        `gatsby-plugin-offline`
+        `gatsby-plugin-offline`,
+        `gatsby-plugin-emotion`,
     ],
 };

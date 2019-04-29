@@ -8,7 +8,7 @@ exports.onRouteUpdate = async ({ location }) => {
     try {
         const parsedMenuItems = JSON.parse(menuItems);
         const nextActiveItem = parsedMenuItems.findIndex(
-            item => item.url === location.pathname
+            item => item.url === location.pathname.replace(/\/$/, "")
         );
         localStorage.setItem("activeMenuIndex", nextActiveItem);
     } catch (_) {

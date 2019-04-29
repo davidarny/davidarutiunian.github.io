@@ -1,4 +1,6 @@
-import React from "react";
+/** @jsx jsx */
+
+import { jsx, css } from "@emotion/core";
 import { StaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 
@@ -17,26 +19,23 @@ function Profile() {
                 }
             `}
             render={data => (
-                <>
-                    <style jsx>{`
-                        .picture {
-                            display: block;
-                            width: 30%;
-                            max-width: 350px;
-                            min-width: 200px;
-                            margin: auto;
-                            border-radius: 50%;
-                            overflow: hidden;
-                            box-shadow: 0px 4px 6px 2px lightgrey;
-                        }
-                    `}</style>
-                    <div className="picture">
-                        <Img
-                            fluid={data.placeholderImage.childImageSharp.fluid}
-                            alt="David Arutiunian"
-                        />
-                    </div>
-                </>
+                <div
+                    css={css`
+                        display: block;
+                        width: 30%;
+                        max-width: 350px;
+                        min-width: 200px;
+                        margin: auto;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        box-shadow: 0px 4px 6px 2px lightgrey;
+                    `}
+                >
+                    <Img
+                        fluid={data.placeholderImage.childImageSharp.fluid}
+                        alt="David Arutiunian"
+                    />
+                </div>
             )}
         />
     );
