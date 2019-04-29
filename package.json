@@ -23,6 +23,8 @@
     "styled-jsx": "^3.2.1"
   },
   "devDependencies": {
+    "commitizen": "^3.1.1",
+    "cz-conventional-changelog": "2.1.0",
     "gh-pages": "^2.0.1",
     "prettier": "^1.17.0"
   },
@@ -31,6 +33,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
+    "commit": "git-cz",
     "start": "yarn develop",
     "serve": "gatsby serve",
     "deploy": "gatsby build && gh-pages -d public -b master",
@@ -42,5 +45,10 @@
   },
   "bugs": {
     "url": "https://github.com/DavidArutiunian/website/issues"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
