@@ -4,7 +4,7 @@ import { jsx, css } from "@emotion/core";
 import { StaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 
-function Profile() {
+function ProfilePicture() {
     return (
         <StaticQuery
             query={graphql`
@@ -25,7 +25,6 @@ function Profile() {
                         width: 30%;
                         max-width: 350px;
                         min-width: 200px;
-                        margin: auto;
                         border-radius: 50%;
                         overflow: hidden;
                         box-shadow: 0px 4px 6px 2px lightgrey;
@@ -34,6 +33,7 @@ function Profile() {
                     <Img
                         fluid={data.placeholderImage.childImageSharp.fluid}
                         alt="David Arutiunian"
+                        title="David Arutiunian"
                     />
                 </div>
             )}
@@ -41,4 +41,4 @@ function Profile() {
     );
 }
 
-export default Profile;
+export default ProfilePicture;

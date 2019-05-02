@@ -7,9 +7,17 @@ exports.onRouteUpdate = async ({ location }) => {
     const menuItems = localStorage.getItem("menuItems");
     try {
         const parsedMenuItems = JSON.parse(menuItems);
-        const nextActiveItem = parsedMenuItems.findIndex(
-            item => item.url === location.pathname.replace(/\/$/, "")
-        );
+        const nextActiveItem = parsedMenuItems.findIndex(item => {
+            const loc =
+                location.pathname === "/"
+                    ? location.pathname
+                    : location.pathname.replace(/\/$/, "");
+            console.debug({
+                item: item.url,
+                location: loc,
+            });
+            return item.url === loc;
+        });
         localStorage.setItem("activeMenuIndex", nextActiveItem);
     } catch (_) {
         console.warn("Error when parsing 'menuItems'");

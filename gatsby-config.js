@@ -4,7 +4,7 @@ module.exports = {
         description: `Personal website powered by Gatsby`,
         author: `@DavidArutiunian`,
         menuLinks: [
-            { title: "Me", id: "me", url: "/" },
+            { title: "Home", id: "home", url: "/" },
             { title: "About", id: "about", url: "/about" },
             { title: "Contacts", id: "contacts", url: "/contacts" },
         ],
