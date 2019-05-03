@@ -9,10 +9,14 @@ import Layout from "antd/es/layout";
 import Row from "antd/es/row";
 import Col from "antd/es/col";
 import Icon from "antd/es/icon";
+import { mq } from "../common";
+import Logo from "../components/logo";
 
 const { Header, Footer, Content } = Layout;
 
-function CustomLayout({ children }) {
+function CustomLayout({ children, ...rest }) {
+    const path = rest["*"];
+
     return (
         <StaticQuery
             query={graphql`
@@ -49,8 +53,12 @@ function CustomLayout({ children }) {
                             z-index: 1;
                         `}
                     >
-                        <Navbar items={data.site.siteMetadata.menuLinks} />
+                        <Navbar
+                            path={path}
+                            items={data.site.siteMetadata.menuLinks}
+                        />
                     </Header>
+                    <AnimatedLogo path={path} />
                     <Content>{children}</Content>
                     <Footer
                         css={css`
@@ -79,6 +87,32 @@ function CustomLayout({ children }) {
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
+};
+
+function AnimatedLogo({ path }) {
+    return (
+        <div
+            css={mq({
+                position: "absolute",
+                opacity: ["0.8", "0.6", "0.4"],
+                right: ["-200px", "-90px", "-70px", "-10px"],
+                top: ["-120px", "-20px", "-60px", "-20px"],
+                transform: [
+                    "scale(0.175) rotate(-27deg)",
+                    "scale(0.3) rotate(-27deg)",
+                    "scale(0.4) rotate(-27deg)",
+                    "scale(0.6) rotate(-27deg)",
+                ],
+                display: path === "" ? "block" : "none",
+            })}
+        >
+            <Logo />
+        </div>
+    );
+}
+
+AnimatedLogo.propTypes = {
+    path: PropTypes.string.isRequired,
 };
 
 export default CustomLayout;

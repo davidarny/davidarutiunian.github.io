@@ -8,35 +8,16 @@ import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { mq } from "../common";
 
-function Navbar({ items = [] }) {
+function Navbar({ path, items = [] }) {
     const [active, setActive] = useState(-1);
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem("menuItems", JSON.stringify(items));
-        return () => localStorage.removeItem("menuItems");
-    }, [items]);
-
-    useEffect(() => {
-        async function fetchActiveIndex() {
-            try {
-                await waitUntil(
-                    () => localStorage.getItem("activeMenuIndex") !== null
-                );
-            } catch (error) {
-                console.warn(error);
-            }
-            const activeMenuIndex = localStorage.getItem("activeMenuIndex");
-            try {
-                const nextActive = JSON.parse(activeMenuIndex);
-                setActive(nextActive);
-            } catch (_) {
-                console.warn("Error when parsing 'activeMenuIndex'");
-            }
-        }
-
-        fetchActiveIndex();
-    });
+        const nextActiveIndex = items.findIndex(
+            item => item.url === `/${path}`
+        );
+        setActive(nextActiveIndex);
+    }, [items, path]);
 
     return (
         <Row type="flex" align="middle" css={{ height: "100%" }}>
@@ -96,6 +77,7 @@ function Navbar({ items = [] }) {
 }
 
 Navbar.propTypes = {
+    path: PropTypes.string.isRequired,
     items: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -216,21 +198,5 @@ NavbarItems.propTypes = {
     display: PropTypes.string.isRequired,
     navbarItemStyles: PropTypes.object,
 };
-
-async function waitUntil(predicate, timeout = 1000) {
-    let timer = 0;
-    return new Promise((resolve, reject) => {
-        timer = setInterval(() => {
-            if (predicate()) {
-                clearInterval(timer);
-                resolve();
-            }
-        }, 0);
-        setTimeout(() => {
-            clearInterval(timer);
-            reject(new Error("'waitUntil' timeout"));
-        }, timeout);
-    });
-}
 
 export default Navbar;
