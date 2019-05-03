@@ -49,7 +49,6 @@ function CustomLayout({ children, ...rest }) {
                     <Header
                         css={css`
                             padding: 0;
-                            margin-bottom: 1em;
                             z-index: 1;
                         `}
                     >
@@ -93,18 +92,14 @@ function AnimatedLogo({ path }) {
     return (
         <div
             css={mq({
-                position: "absolute",
-                opacity: ["0.8", "0.6", "0.4"],
-                right: ["-200px", "-90px", "-70px", "-10px"],
-                top: ["-120px", "-20px", "-60px", "-20px"],
-                transform: [
-                    "scale(0.175) rotate(-27deg)",
-                    "scale(0.3) rotate(-27deg)",
-                    "scale(0.4) rotate(-27deg)",
-                    "scale(0.6) rotate(-27deg)",
-                ],
-                display: path === "" ? "block" : "none",
+                position: "fixed",
+                opacity: "0.2",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+                zoom: ["0.5", "0.6", "0.7", "0.8", "1.0"],
             })}
+            style={{ display: !path ? "block" : "none" }}
         >
             <Logo />
         </div>

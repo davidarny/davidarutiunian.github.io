@@ -19,14 +19,15 @@ function IndexPage() {
             <Centered>
                 <div
                     css={css`
-                        overflow: hidden;
+                        overflow-x: hidden;
                         padding: 8px;
+                        padding-top: calc(1em + 8px);
                     `}
                 >
                     <Row
-                        css={css`
-                            height: 100%;
-                        `}
+                        // css={css`
+                        //     height: 100%;
+                        // `}
                         gutter={64}
                     >
                         <LeftSide />
@@ -100,18 +101,14 @@ function RightSide() {
             xl={{ offset: 0, span: 8 }}
             xxl={{ offset: 0, span: 7 }}
             css={mq({
-                marginTop: ["16px", "16px", "unset"],
+                marginTop: ["16px", "16px", "64px"],
                 height: "100%",
             })}
         >
             <div
                 css={mq({
-                    display: ["block", "block", "flex"],
-                    height: "100%",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: ["normal", "normal", "larger"],
+                    display: "block",
+                    fontSize: ["initial", "initial", "larger"],
                     transition: "font-size 0.3s ease-in-out",
                 })}
             >
