@@ -24,12 +24,7 @@ function IndexPage() {
                         padding-top: calc(1em + 8px);
                     `}
                 >
-                    <Row
-                        // css={css`
-                        //     height: 100%;
-                        // `}
-                        gutter={64}
-                    >
+                    <Row gutter={64}>
                         <LeftSide />
                         <RightSide />
                     </Row>
