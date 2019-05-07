@@ -4,7 +4,7 @@ import { jsx, css } from "@emotion/core";
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 
-function Logo({ duration = 1500, delay = 1000 }) {
+function Logo({ duration, delay }) {
     useEffect(() => {
         import("../vendor/lazy-line-painter-1.9.6.min.js").then(
             ({ default: LazyLinePainter }) => {
@@ -19,7 +19,7 @@ function Logo({ duration = 1500, delay = 1000 }) {
                 tween.paint();
             }
         );
-    }, []);
+    });
 
     return (
         <svg
@@ -80,8 +80,8 @@ function Logo({ duration = 1500, delay = 1000 }) {
 }
 
 Logo.propTypes = {
-    duration: PropTypes.number,
-    delay: PropTypes.number,
+    duration: PropTypes.number.isRequired,
+    delay: PropTypes.number.isRequired,
 };
 
 export default Logo;

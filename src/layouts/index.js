@@ -9,12 +9,11 @@ import Layout from "antd/es/layout";
 import Row from "antd/es/row";
 import Col from "antd/es/col";
 import Icon from "antd/es/icon";
-import { mq } from "../common";
-import Logo from "../components/logo";
+import TransitionWithLoader from "../components/transition-with-loader";
 
 const { Header, Footer, Content } = Layout;
 
-function CustomLayout({ children, ...rest }) {
+function CustomLayout({ children, location, ...rest }) {
     const path = rest["*"];
 
     return (
@@ -57,8 +56,11 @@ function CustomLayout({ children, ...rest }) {
                             items={data.site.siteMetadata.menuLinks}
                         />
                     </Header>
-                    <AnimatedLogo path={path} />
-                    <Content>{children}</Content>
+                    <Content>
+                        <TransitionWithLoader location={location}>
+                            {children}
+                        </TransitionWithLoader>
+                    </Content>
                     <Footer
                         css={css`
                             margin-top: 1em;
@@ -86,28 +88,6 @@ function CustomLayout({ children, ...rest }) {
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
-};
-
-function AnimatedLogo({ path }) {
-    return (
-        <div
-            css={mq({
-                position: "fixed",
-                opacity: "0.2",
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                zoom: ["0.5", "0.6", "0.7", "0.8", "1.0"],
-            })}
-            style={{ display: !path ? "block" : "none" }}
-        >
-            <Logo />
-        </div>
-    );
-}
-
-AnimatedLogo.propTypes = {
-    path: PropTypes.string.isRequired,
 };
 
 export default CustomLayout;
