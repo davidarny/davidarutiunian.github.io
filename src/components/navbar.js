@@ -6,7 +6,7 @@ import Row from "antd/es/row";
 import Col from "antd/es/col";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import { mq } from "../common";
+import { mq } from "common";
 
 function Navbar({ path, items = [] }) {
     const [active, setActive] = useState(-1);

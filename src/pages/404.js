@@ -2,10 +2,10 @@
 
 import { jsx, css } from "@emotion/core";
 import { Fragment } from "react";
-import SEO from "../components/seo";
+import SEO from "components/seo";
+import NotFound from "components/not-found";
 import Row from "antd/es/row";
 import Col from "antd/es/col";
-import NotFound from "../components/not-found";
 
 function NotFoundPage() {
     return (

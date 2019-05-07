@@ -4,12 +4,12 @@ import "antd/dist/antd.css";
 import { jsx, Global, css } from "@emotion/core";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import Navbar from "../components/navbar";
+import Navbar from "components/navbar";
 import Layout from "antd/es/layout";
 import Row from "antd/es/row";
 import Col from "antd/es/col";
 import Icon from "antd/es/icon";
-import TransitionWithLoader from "../components/transition-with-loader";
+import TransitionWithLoader from "components/transition-with-loader";
 
 const { Header, Footer, Content } = Layout;
 

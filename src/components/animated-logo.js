@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
 import { jsx } from "@emotion/core";
-import { mq } from "../common";
+import { mq } from "common";
 import PropTypes from "prop-types";
-import Logo from "../components/logo";
+import Logo from "components/logo";
 
 function AnimatedLogo({ duration = 1500, delay = 1000 }) {
     return (

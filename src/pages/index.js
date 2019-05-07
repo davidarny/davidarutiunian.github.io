@@ -2,13 +2,13 @@
 
 import { jsx, css } from "@emotion/core";
 import { Fragment } from "react";
-import SEO from "../components/seo";
-import ProfilePicture from "../components/profile-picture";
+import SEO from "components/seo";
+import ProfilePicture from "components/profile-picture";
 import Row from "antd/es/row";
 import Col from "antd/es/col";
 import Typography from "antd/es/typography";
-import { mq } from "../common";
-import Centered from "../layouts/centered";
+import { mq } from "common";
+import Centered from "layouts/centered";
 
 const { Text, Paragraph } = Typography;
 

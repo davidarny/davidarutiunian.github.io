@@ -2,8 +2,8 @@
 
 import { jsx, css } from "@emotion/core";
 import { Fragment } from "react";
-import SEO from "../components/seo";
-import Stub from "../components/stub";
+import SEO from "components/seo";
+import Stub from "components/stub";
 import Row from "antd/es/row";
 import Col from "antd/es/col";
 
