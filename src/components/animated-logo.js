@@ -16,6 +16,7 @@ function AnimatedLogo({ duration = 1500, delay = 1000 }) {
                 top: "50%",
                 transform: "translate(-50%, -50%)",
                 zoom: ["0.5", "0.6", "0.7", "0.8", "1.0"],
+                zIndex: 1,
             })}
         >
             <Logo duration={duration} delay={delay} />

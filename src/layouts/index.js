@@ -38,7 +38,7 @@ function CustomLayout({ children, location, ...rest }) {
             render={data => (
                 <Layout
                     css={css`
-                        height: 100vh;
+                        height: 100%;
                     `}
                 >
                     <Global
@@ -46,11 +46,26 @@ function CustomLayout({ children, location, ...rest }) {
                             a {
                                 color: inherit;
                             }
+
+                            body {
+                                width: 100%;
+                                height: 100%;
+                            }
+
+                            #___gatsby {
+                                width: 100%;
+                                height: 100%;
+
+                                & > div {
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
                         `}
                     />
                     <div
                         css={css`
-                            z-index: 1;
+                            z-index: 10;
                         `}
                     >
                         <Faded displayed={rendered}>

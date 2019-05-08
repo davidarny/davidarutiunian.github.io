@@ -70,6 +70,10 @@ export function TransitionWithLoader({
                             css={{
                                 width: "100%",
                                 height: "100%",
+                                visibility:
+                                    transitionState === ETransitionState.IDLE
+                                        ? "hidden"
+                                        : "visible",
                                 position:
                                     transitionState === ETransitionState.ENTER
                                         ? "absolute"

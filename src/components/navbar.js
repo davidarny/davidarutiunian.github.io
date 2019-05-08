@@ -66,6 +66,7 @@ function Navbar({ path, items = [] }) {
                                         display: "block",
                                         float: "left",
                                     }}
+                                    onItemClick={() => setOpen(false)}
                                 />
                             )}
                         </div>
@@ -164,6 +165,7 @@ function NavbarItems({
     color,
     display,
     styles: navbarItemStyles,
+    onItemClick,
 }) {
     return items.map((item, index) => (
         <div
@@ -175,7 +177,7 @@ function NavbarItems({
                 ...navbarItemStyles,
             })}
         >
-            <Link prefetch="true" to={item.url}>
+            <Link prefetch="true" to={item.url} onClick={onItemClick}>
                 {item.title}
             </Link>
         </div>
@@ -197,6 +199,7 @@ NavbarItems.propTypes = {
     }),
     display: PropTypes.string.isRequired,
     navbarItemStyles: PropTypes.object,
+    onItemClick: PropTypes.func,
 };
 
 export default Navbar;
