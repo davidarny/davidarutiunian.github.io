@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsx jsx */
 
 import { jsx } from "@emotion/core";
-import { useState, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
 import AnimatedLogo from "./animated-logo";
 import Transition, { getTransitionStyles } from "./transition";
 import PropTypes from "prop-types";
+import noop from "lodash.noop";
 
 const ETransitionState = {
     IDLE: "idle",
@@ -14,13 +16,21 @@ const ETransitionState = {
 
 export function TransitionWithLoader({
     children,
-    location,
+    pathname,
     timeoutDuration = 1000,
     opacityDuration = 250,
+    onInitialAppear = noop,
 }) {
     const [transitionState, setTransitionState] = useState(
         ETransitionState.IDLE
     );
+
+    useEffect(() => {
+        setTimeout(() => {
+            setTransitionState(ETransitionState.EXIT);
+            onInitialAppear();
+        }, timeoutDuration + opacityDuration);
+    }, []);
 
     return (
         <Fragment>
@@ -39,7 +49,7 @@ export function TransitionWithLoader({
                     enter: timeoutDuration + opacityDuration,
                     exit: timeoutDuration + opacityDuration,
                 }}
-                location={location}
+                pathname={pathname}
                 onTransitionEnter={() =>
                     setTransitionState(ETransitionState.ENTER)
                 }
@@ -52,6 +62,12 @@ export function TransitionWithLoader({
                             css={{
                                 width: "100%",
                                 height: "100%",
+                                position:
+                                    transitionState === ETransitionState.ENTER
+                                        ? "absolute"
+                                        : "initial",
+                                top: 0,
+                                left: 0,
                                 ...getTransitionStyles(status, opacityDuration),
                             }}
                         >
@@ -65,7 +81,7 @@ export function TransitionWithLoader({
 }
 
 TransitionWithLoader.propTypes = {
-    location: PropTypes.object.isRequired,
+    pathname: PropTypes.string.isRequired,
     timeoutDuration: PropTypes.number,
     opacityDuration: PropTypes.number,
 };

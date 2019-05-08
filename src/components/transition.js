@@ -7,8 +7,8 @@ import {
 } from "react-transition-group";
 import PropTypes from "prop-types";
 
-export function Transition({
-    location,
+function Transition({
+    pathname,
     timeout,
     onTransitionEnter,
     onTransitionExit,
@@ -17,10 +17,11 @@ export function Transition({
     return (
         <TransitionGroup css={{ width: "100%", height: "100%" }}>
             <ReactTransition
-                key={location.pathname}
+                key={pathname}
                 timeout={timeout}
-                onEnter={onTransitionEnter}
+                onEntering={onTransitionEnter}
                 onExited={onTransitionExit}
+                appear={true}
             >
                 {status => render(status)}
             </ReactTransition>
@@ -29,9 +30,7 @@ export function Transition({
 }
 
 Transition.propTypes = {
-    location: PropTypes.shape({
-        pathname: PropTypes.string.isRequired,
-    }),
+    pathname: PropTypes.string.isRequired,
     timeout: PropTypes.shape({
         enter: PropTypes.number.isRequired,
         exit: PropTypes.number.isRequired,
