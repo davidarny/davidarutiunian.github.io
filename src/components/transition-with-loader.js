@@ -42,7 +42,15 @@ export function TransitionWithLoader({
                     left: 0,
                 }}
             >
-                <AnimatedLogo duration={timeoutDuration} delay={0} />
+                <AnimatedLogo
+                    pathname={pathname}
+                    duration={timeoutDuration}
+                    delay={
+                        transitionState === ETransitionState.IDLE
+                            ? 0
+                            : opacityDuration * 2
+                    }
+                />
             </div>
             <Transition
                 timeout={{

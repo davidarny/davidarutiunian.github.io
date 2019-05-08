@@ -30,6 +30,7 @@
     "devDependencies": {
         "@commitlint/cli": "^7.5.2",
         "@commitlint/config-conventional": "^7.5.0",
+        "@hot-loader/react-dom": "^16.8.6",
         "@typescript-eslint/eslint-plugin": "^1.7.0",
         "@typescript-eslint/parser": "^1.7.0",
         "babel-eslint": "^10.0.1",

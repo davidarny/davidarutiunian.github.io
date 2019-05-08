@@ -1,24 +1,66 @@
 /** @jsx jsx */
 
 import { jsx, css } from "@emotion/core";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
+function paint(LazyLinePainter, predicate) {
+    const element = document.querySelector("#penrose");
+    const tween = new LazyLinePainter(element, {
+        ease: "easeOutCubic",
+        strokeWidth: 1,
+        strokeOpacity: 1,
+        strokeColor: "#222F3D",
+        strokeCap: "square",
+    });
+    if (!predicate || predicate(tween)) {
+        tween.paint();
+    }
+    return tween;
+}
+
 function Logo({ duration, delay }) {
+    const LazyLinePainterImpl = useRef();
+    const playing = useRef(true);
+
     useEffect(() => {
         import("../vendor/lazy-line-painter-1.9.6.min.js").then(
             ({ default: LazyLinePainter }) => {
-                const element = document.querySelector("#penrose");
-                const tween = new LazyLinePainter(element, {
-                    ease: "easeOutCubic",
-                    strokeWidth: 1,
-                    strokeOpacity: 1,
-                    strokeColor: "#222F3D",
-                    strokeCap: "square",
+                LazyLinePainterImpl.current = LazyLinePainter;
+                const tween = paint(LazyLinePainter);
+                tween.on("complete", () => {
+                    playing.current = false;
+                    tween.erase();
                 });
-                tween.paint();
             }
         );
+    }, []);
+
+    useEffect(() => {
+        const element = document.querySelector("#penrose");
+        const conditions = [
+            playing.current,
+            !LazyLinePainterImpl.current,
+            !element,
+        ];
+        if (conditions.some(Boolean)) {
+            return;
+        }
+        const tween = paint(
+            LazyLinePainterImpl.current,
+            () => (playing.current = true)
+        );
+        tween.on("complete", () => {
+            if (!playing.current) {
+                return;
+            }
+            playing.current = false;
+            tween.erase();
+        });
+        return () => {
+            playing.current = false;
+            tween.erase();
+        };
     });
 
     return (

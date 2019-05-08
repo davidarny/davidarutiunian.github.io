@@ -4,6 +4,7 @@ import { jsx } from "@emotion/core";
 import { mq } from "common";
 import PropTypes from "prop-types";
 import Logo from "components/logo";
+import { memo } from "react";
 
 function AnimatedLogo({ duration = 1500, delay = 1000 }) {
     return (
@@ -27,4 +28,4 @@ AnimatedLogo.propTypes = {
     delay: PropTypes.number.isRequired,
 };
 
-export default AnimatedLogo;
+export default memo(AnimatedLogo);
