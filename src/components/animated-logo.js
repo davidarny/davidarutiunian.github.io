@@ -10,7 +10,7 @@ function AnimatedLogo({ duration = 1500, delay = 1000 }) {
         <div
             css={mq({
                 position: "fixed",
-                opacity: "0.2",
+                opacity: "0.6",
                 left: "50%",
                 top: "50%",
                 transform: "translate(-50%, -50%)",
