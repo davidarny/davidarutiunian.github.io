@@ -50,6 +50,7 @@ function CustomLayout({ children, location, ...rest }) {
                             body {
                                 width: 100%;
                                 height: 100%;
+                                margin: 0;
                             }
 
                             #___gatsby {
@@ -74,16 +75,13 @@ function CustomLayout({ children, location, ...rest }) {
                                     padding: 0;
                                 `}
                             >
-                                <Navbar
-                                    path={path}
-                                    items={data.site.siteMetadata.menuLinks}
-                                />
+                                <Navbar path={path} items={data.site.siteMetadata.menuLinks} />
                             </Header>
                         </Faded>
                     </div>
                     <Content>
                         <TransitionWithLoader
-                            onInitialAppear={() => setRenderState(true)}
+                            onInitialTweenComplete={() => setRenderState(true)}
                             pathname={location.pathname}
                         >
                             {children}

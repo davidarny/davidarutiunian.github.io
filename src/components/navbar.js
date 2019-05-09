@@ -6,21 +6,29 @@ import Row from "antd/es/row";
 import Col from "antd/es/col";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import { mq } from "common";
+import { mq, ifStateIsFn } from "common";
 
 function Navbar({ path, items = [] }) {
     const [active, setActive] = useState(-1);
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const nextActiveIndex = items.findIndex(
-            item => item.url === `/${path}`
-        );
+        const predicate = item => item.url === `/${path}`;
+        const nextActiveIndex = items.findIndex(predicate);
         setActive(nextActiveIndex);
     }, [items, path]);
 
+    const ifStateIs = ifStateIsFn(open);
+    const ifStateIsOpen = ifStateIs(true);
+
     return (
-        <Row type="flex" align="middle" css={{ height: "100%" }}>
+        <Row
+            type="flex"
+            align="middle"
+            css={css`
+                height: 100%;
+            `}
+        >
             <Col xs={24} sm={24}>
                 <nav
                     css={css`
@@ -53,7 +61,7 @@ function Navbar({ path, items = [] }) {
                                 padding-left: 1em;
                             `}
                         >
-                            {open && (
+                            {ifStateIsOpen(
                                 <NavbarItems
                                     items={items}
                                     active={active}
@@ -62,10 +70,6 @@ function Navbar({ path, items = [] }) {
                                         main: "darkgrey",
                                     }}
                                     display="block"
-                                    navbarItemStyles={{
-                                        display: "block",
-                                        float: "left",
-                                    }}
                                     onItemClick={() => setOpen(false)}
                                 />
                             )}
@@ -88,13 +92,7 @@ Navbar.propTypes = {
     ),
 };
 
-function NavbarBurger({
-    size = 30,
-    height = 5,
-    background = "white",
-    open = false,
-    onToggle,
-}) {
+function NavbarBurger({ size = 30, height = 5, background = "white", open = false, onToggle }) {
     return (
         <div
             css={css`
@@ -159,14 +157,7 @@ NavbarBurger.propTypes = {
     onToggle: PropTypes.func,
 };
 
-function NavbarItems({
-    items,
-    active,
-    color,
-    display,
-    styles: navbarItemStyles,
-    onItemClick,
-}) {
+function NavbarItems({ items, active, color, display, onItemClick }) {
     return items.map((item, index) => (
         <div
             key={item.id}
@@ -174,10 +165,16 @@ function NavbarItems({
                 margin: ["initial", "0 10px 0 10px"],
                 display,
                 color: active === index ? color.active : color.main,
-                ...navbarItemStyles,
             })}
         >
-            <Link prefetch="true" to={item.url} onClick={onItemClick}>
+            <Link
+                prefetch="true"
+                to={item.url}
+                onClick={onItemClick}
+                css={css`
+                    cursor: pointer;
+                `}
+            >
                 {item.title}
             </Link>
         </div>
@@ -198,7 +195,6 @@ NavbarItems.propTypes = {
         active: PropTypes.string.isRequired,
     }),
     display: PropTypes.string.isRequired,
-    navbarItemStyles: PropTypes.object,
     onItemClick: PropTypes.func,
 };
 

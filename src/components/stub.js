@@ -28,10 +28,7 @@ function Stub() {
                         margin: auto;
                     `}
                 >
-                    <Img
-                        fluid={data.placeholderImage.childImageSharp.fluid}
-                        alt="stub"
-                    />
+                    <Img fluid={data.placeholderImage.childImageSharp.fluid} alt="stub" />
                 </div>
             )}
         />

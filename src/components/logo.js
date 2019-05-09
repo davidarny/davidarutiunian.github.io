@@ -1,55 +1,34 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsx jsx */
 
 import { jsx, css } from "@emotion/core";
 import { useEffect, useRef } from "react";
+import noop from "lodash.noop";
 import PropTypes from "prop-types";
 
-function paint(LazyLinePainter, predicate) {
-    const element = document.querySelector("#penrose");
-    const tween = new LazyLinePainter(element, {
-        ease: "easeOutCubic",
-        strokeWidth: 1,
-        strokeOpacity: 1,
-        strokeColor: "#222F3D",
-        strokeCap: "square",
-    });
-    if (!predicate || predicate(tween)) {
-        tween.paint();
-    }
-    return tween;
-}
-
-function Logo({ duration, delay }) {
+function Logo({ duration, delay, onInitialTweenComplete = noop }) {
     const LazyLinePainterImpl = useRef();
     const playing = useRef(true);
 
     useEffect(() => {
-        import("../vendor/lazy-line-painter-1.9.6.min.js").then(
-            ({ default: LazyLinePainter }) => {
-                LazyLinePainterImpl.current = LazyLinePainter;
-                const tween = paint(LazyLinePainter);
-                tween.on("complete", () => {
-                    playing.current = false;
-                    tween.erase();
-                });
-            }
-        );
+        import("../vendor/lazy-line-painter-1.9.6.min.js").then(({ default: LazyLinePainter }) => {
+            LazyLinePainterImpl.current = LazyLinePainter;
+            const tween = paint(LazyLinePainter);
+            tween.on("complete", () => {
+                onInitialTweenComplete();
+                playing.current = false;
+                tween.erase();
+            });
+        });
     }, []);
 
     useEffect(() => {
         const element = document.querySelector("#penrose");
-        const conditions = [
-            playing.current,
-            !LazyLinePainterImpl.current,
-            !element,
-        ];
+        const conditions = [playing.current, !LazyLinePainterImpl.current, !element];
         if (conditions.some(Boolean)) {
             return;
         }
-        const tween = paint(
-            LazyLinePainterImpl.current,
-            () => (playing.current = true)
-        );
+        const tween = paint(LazyLinePainterImpl.current, () => (playing.current = true));
         tween.on("complete", () => {
             if (!playing.current) {
                 return;
@@ -124,6 +103,27 @@ function Logo({ duration, delay }) {
 Logo.propTypes = {
     duration: PropTypes.number.isRequired,
     delay: PropTypes.number.isRequired,
+    onInitialTweenComplete: PropTypes.func,
 };
+
+function paint(LazyLinePainter, paintOnlyIf) {
+    const element = document.querySelector("#penrose");
+    const tween = new LazyLinePainter(element, {
+        ease: "easeOutCubic",
+        strokeWidth: 1,
+        strokeOpacity: 1,
+        strokeColor: "#222F3D",
+        strokeCap: "square",
+    });
+    const conditions = [
+        !paintOnlyIf,
+        typeof paintOnlyIf === "function" && paintOnlyIf(tween),
+        typeof paintOnlyIf !== "function" && paintOnlyIf,
+    ];
+    if (conditions.some(Boolean)) {
+        tween.paint();
+    }
+    return tween;
+}
 
 export default Logo;

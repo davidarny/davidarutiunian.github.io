@@ -1,21 +1,18 @@
 /** @jsx jsx */
 
-import { jsx } from "@emotion/core";
-import {
-    TransitionGroup,
-    Transition as ReactTransition,
-} from "react-transition-group";
+import { jsx, css } from "@emotion/core";
+import { TransitionGroup, Transition as ReactTransition } from "react-transition-group";
+import { memo } from "react";
 import PropTypes from "prop-types";
 
-function Transition({
-    pathname,
-    timeout,
-    onTransitionEnter,
-    onTransitionExit,
-    render,
-}) {
+function Transition({ pathname, timeout, onTransitionEnter, onTransitionExit, render }) {
     return (
-        <TransitionGroup css={{ width: "100%", height: "100%" }}>
+        <TransitionGroup
+            css={css`
+                width: 100%;
+                height: 100%;
+            `}
+        >
             <ReactTransition
                 key={pathname}
                 timeout={timeout}
@@ -34,6 +31,7 @@ Transition.propTypes = {
     timeout: PropTypes.shape({
         enter: PropTypes.number.isRequired,
         exit: PropTypes.number.isRequired,
+        appear: PropTypes.number,
     }).isRequired,
     onTransitionEnter: PropTypes.func,
     onTransitionExit: PropTypes.func,
@@ -59,4 +57,4 @@ export function getTransitionStyles(status, timeout) {
     }[status];
 }
 
-export default Transition;
+export default memo(Transition);

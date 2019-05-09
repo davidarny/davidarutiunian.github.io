@@ -9,9 +9,7 @@ function NotFound() {
         <StaticQuery
             query={graphql`
                 query {
-                    placeholderImage: file(
-                        relativePath: { eq: "not-found.png" }
-                    ) {
+                    placeholderImage: file(relativePath: { eq: "not-found.png" }) {
                         childImageSharp {
                             fluid(maxWidth: 750) {
                                 ...GatsbyImageSharpFluid
@@ -30,10 +28,7 @@ function NotFound() {
                         margin: auto;
                     `}
                 >
-                    <Img
-                        fluid={data.placeholderImage.childImageSharp.fluid}
-                        alt="not-found"
-                    />
+                    <Img fluid={data.placeholderImage.childImageSharp.fluid} alt="not-found" />
                 </div>
             )}
         />

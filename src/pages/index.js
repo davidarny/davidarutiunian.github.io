@@ -112,8 +112,7 @@ function RightSide() {
                     <span role="img" aria-label="hand">
                         ✋
                     </span>{" "}
-                    <br /> My name is David. I'm backend / frontend developer
-                    currently working at
+                    <br /> My name is David. I'm backend / frontend developer currently working at
                     <a
                         href="https://omega-r.com/"
                         rel="noopener noreferrer"
@@ -125,8 +124,7 @@ function RightSide() {
                     <span role="img" aria-label="heart">
                         &nbsp;❤
                     </span>
-                    . I love building complex systems and writing simple and
-                    elegant code
+                    . I love building complex systems and writing simple and elegant code
                     <span role="img" aria-label="laptop">
                         &nbsp;💻
                     </span>

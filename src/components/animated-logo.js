@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import Logo from "components/logo";
 import { memo } from "react";
 
-function AnimatedLogo({ duration = 1500, delay = 1000 }) {
+function AnimatedLogo({ duration = 1500, delay = 1000, onInitialTweenComplete }) {
     return (
         <div
             css={mq({
@@ -19,7 +19,11 @@ function AnimatedLogo({ duration = 1500, delay = 1000 }) {
                 zIndex: 1,
             })}
         >
-            <Logo duration={duration} delay={delay} />
+            <Logo
+                duration={duration}
+                delay={delay}
+                onInitialTweenComplete={onInitialTweenComplete}
+            />
         </div>
     );
 }
@@ -27,6 +31,7 @@ function AnimatedLogo({ duration = 1500, delay = 1000 }) {
 AnimatedLogo.propTypes = {
     duration: PropTypes.number.isRequired,
     delay: PropTypes.number.isRequired,
+    onInitialTweenComplete: PropTypes.func,
 };
 
 export default memo(AnimatedLogo);
