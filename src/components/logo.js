@@ -4,20 +4,27 @@ import { jsx, css } from "@emotion/core";
 import { useEffect, useRef } from "react";
 import noop from "lodash.noop";
 import PropTypes from "prop-types";
+import { ifStateIsFn } from "common";
 
 function Logo({ duration, delay, onInitialTweenComplete = noop }) {
     const LazyLinePainterImpl = useRef();
     const playing = useRef(true);
+    const imported = useRef(false);
 
     useEffect(() => {
-        import("../vendor/lazy-line-painter-1.9.6.min.js").then(({ default: LazyLinePainter }) => {
-            LazyLinePainterImpl.current = LazyLinePainter;
-            const tween = paint(LazyLinePainter);
-            tween.on("complete", () => {
-                onInitialTweenComplete();
-                playing.current = false;
-                tween.erase();
-            });
+        ifStateIsFn(imported.current)(false)(() => {
+            import("../vendor/lazy-line-painter-1.9.6.min.js").then(
+                ({ default: LazyLinePainter }) => {
+                    imported.current = true;
+                    LazyLinePainterImpl.current = LazyLinePainter;
+                    const tween = paint(LazyLinePainter);
+                    tween.on("complete", () => {
+                        onInitialTweenComplete();
+                        playing.current = false;
+                        tween.erase();
+                    });
+                }
+            );
         });
     }, [onInitialTweenComplete]);
 
