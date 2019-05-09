@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsx jsx */
 
 import { jsx, css } from "@emotion/core";
@@ -20,7 +19,7 @@ function Logo({ duration, delay, onInitialTweenComplete = noop }) {
                 tween.erase();
             });
         });
-    }, []);
+    }, [onInitialTweenComplete]);
 
     useEffect(() => {
         const element = document.querySelector("#penrose");
