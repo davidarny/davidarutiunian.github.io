@@ -9,6 +9,14 @@
 </h1>
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/DavidArutiunian/davidarutiunian.github.io.svg)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
+![GitHub top language](https://img.shields.io/github/languages/top/DavidArutiunian/davidarutiunian.github.io.svg)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/DavidArutiunian/davidarutiunian.github.io.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/DavidArutiunian/davidarutiunian.github.io.svg)
+[![GitHub license](https://img.shields.io/github/license/DavidArutiunian/davidarutiunian.github.io.svg)](https://github.com/DavidArutiunian/davidarutiunian.github.io/blob/master/LICENSE)
+[![David](https://img.shields.io/david/DavidArutiunian/davidarutiunian.github.io.svg)](https://github.com/DavidArutiunian/davidarutiunian.github.io)
+[![TLOC](https://tokei.rs/b1/github/DavidArutiunian/davidarutiunian.github.io)](https://github.com/DavidArutiunian/davidarutiunian.github.io)
 
 Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
@@ -25,7 +33,7 @@ _Have another more specific idea? You may want to check out our vibrant collecti
     gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
     ```
 
-1.  **Start developing.**
+2.  **Start developing.**
 
     Navigate into your new site’s directory and start it up.
 
@@ -34,7 +42,7 @@ _Have another more specific idea? You may want to check out our vibrant collecti
     gatsby develop
     ```
 
-1.  **Open the source code and start editing!**
+3.  **Open the source code and start editing!**
 
     Your site is now running at `http://localhost:8000`!
 
