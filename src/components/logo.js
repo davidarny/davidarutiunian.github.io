@@ -13,28 +13,26 @@ function Logo({ duration, delay, onInitialTweenComplete = noop }) {
 
     useEffect(() => {
         ifStateIsFn(imported.current)(false)(() => {
-            import("../vendor/lazy-line-painter-1.9.6.min.js").then(
-                ({ default: LazyLinePainter }) => {
-                    imported.current = true;
+            import("vendor/lazy-line-painter-1.9.6.min.js").then(({ default: LazyLinePainter }) => {
+                imported.current = true;
 
-                    // fix for https://github.com/camoconnell/lazy-line-painter/issues/74
-                    const svg = document.querySelector("#penrose");
-                    const clone = svg.cloneNode(true);
+                // fix for https://github.com/camoconnell/lazy-line-painter/issues/74
+                const svg = document.querySelector("#penrose");
+                const clone = svg.cloneNode(true);
 
-                    LazyLinePainterImpl.current = LazyLinePainter;
-                    const tween = paint(LazyLinePainter);
+                LazyLinePainterImpl.current = LazyLinePainter;
+                const tween = paint(LazyLinePainter);
 
-                    tween.on("complete", () => {
-                        onInitialTweenComplete();
-                        playing.current = false;
+                tween.on("complete", () => {
+                    onInitialTweenComplete();
+                    playing.current = false;
 
-                        const wrapper = document.querySelector("#penrose__wrapper");
-                        wrapper.appendChild(clone);
+                    const wrapper = document.querySelector("#penrose__wrapper");
+                    wrapper.appendChild(clone);
 
-                        tween.destroy();
-                    });
-                }
-            );
+                    tween.destroy();
+                });
+            });
         });
     }, [onInitialTweenComplete]);
 
